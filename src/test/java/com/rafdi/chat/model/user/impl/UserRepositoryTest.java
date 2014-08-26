@@ -1,9 +1,12 @@
-package com.rafdi.chat.model.user;
+package com.rafdi.chat.model.user.impl;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.rafdi.chat.model.user.User;
+import com.rafdi.chat.model.user.UserRepository;
 
 public class UserRepositoryTest {
 	private UserRepository userRepository;

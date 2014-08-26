@@ -1,9 +1,9 @@
-package com.rafdi.chat.app;
+package com.rafdi.chat.ui;
 
 import java.util.Scanner;
 
 import com.rafdi.chat.model.user.User;
-import com.rafdi.chat.model.user.UserFactoryImpl;
+import com.rafdi.chat.model.user.impl.UserFactoryImpl;
 
 public class ChatApp {
 

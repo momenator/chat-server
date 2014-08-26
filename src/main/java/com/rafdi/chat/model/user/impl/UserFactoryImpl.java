@@ -1,4 +1,8 @@
-package com.rafdi.chat.model.user;
+package com.rafdi.chat.model.user.impl;
+
+import com.rafdi.chat.model.user.InvalidNameException;
+import com.rafdi.chat.model.user.User;
+import com.rafdi.chat.model.user.UserFactory;
 
 public class UserFactoryImpl implements UserFactory {
 
