@@ -1,4 +1,4 @@
-package com.rafdi.chat.model.user;
+package com.rafdi.chat.server.model.user;
 
 public class InvalidNameException extends RuntimeException {
 	public InvalidNameException(String message) {

@@ -1,13 +1,13 @@
-package com.rafdi.chat.model.user.impl;
+package com.rafdi.chat.server.model.user.impl;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rafdi.chat.model.user.InvalidNameException;
-import com.rafdi.chat.model.user.User;
-import com.rafdi.chat.model.user.UserFactory;
+import com.rafdi.chat.server.model.user.InvalidNameException;
+import com.rafdi.chat.server.model.user.User;
+import com.rafdi.chat.server.model.user.UserFactory;
 
 public class UserFactoryTest {
 	private UserFactory userFactory;
@@ -27,7 +27,7 @@ public class UserFactoryTest {
 		String expectedName = "Bambi";
 		User user;
 		try {
-			user = userFactory.createUser(expectedName);
+			user = userFactory.createUser(expectedName, null);
 			Assert.assertNotNull("User should not be null", user);
 			Assert.assertEquals("actual username does not match expected",
 					expectedName, user.getName());
@@ -42,7 +42,7 @@ public class UserFactoryTest {
 	public void testCreateUserWithNullNameThrowsException()
 			throws InvalidNameException {
 		String nullName = null;
-		userFactory.createUser(nullName);
+		userFactory.createUser(nullName, null);
 
 	}
 
@@ -50,7 +50,7 @@ public class UserFactoryTest {
 	public void testCreateUserWithSpacesThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "name with spaces";
-		userFactory.createUser(expectedName);
+		userFactory.createUser(expectedName, null);
 
 	}
 
@@ -58,14 +58,14 @@ public class UserFactoryTest {
 	public void testCreateUserWithEmptyStringThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "";
-		userFactory.createUser(expectedName);
+		userFactory.createUser(expectedName, null);
 	}
 
 	@Test(expected = InvalidNameException.class)
 	public void testCreateUserWithIllegalCharsThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "!@£$£$@";
-		userFactory.createUser(expectedName);
+		userFactory.createUser(expectedName, null);
 	}
 
 	@Test

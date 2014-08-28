@@ -1,4 +1,4 @@
-package com.rafdi.chat.model.user;
+package com.rafdi.chat.server.model.user;
 
 public class User {
 
@@ -13,8 +13,9 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String name) {
+	public User(String name, byte[] password) {
 		this.name = name;
+		this.password = password;
 	}
 
 	public String getName() {

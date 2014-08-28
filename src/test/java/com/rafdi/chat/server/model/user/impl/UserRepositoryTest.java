@@ -1,19 +1,19 @@
-package com.rafdi.chat.model.user.impl;
+package com.rafdi.chat.server.model.user.impl;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rafdi.chat.model.user.User;
-import com.rafdi.chat.model.user.UserRepository;
+import com.rafdi.chat.server.model.user.User;
+import com.rafdi.chat.server.model.user.UserRepository;
 
 public class UserRepositoryTest {
 	private UserRepository userRepository;
 
 	@Before
 	public void setUp() throws Exception {
-		userRepository = new UserRespositoryImpl();
+		userRepository = new UserRepositoryImpl();
 	}
 
 	@After
@@ -24,7 +24,7 @@ public class UserRepositoryTest {
 	@Test
 	public void testSaveUser() {
 		String name = "Bob";
-		User user = new User(name);
+		User user = new User(name, null);
 		boolean saved = userRepository.saveUser(user);
 		Assert.assertTrue("User is not saved", saved);
 	}

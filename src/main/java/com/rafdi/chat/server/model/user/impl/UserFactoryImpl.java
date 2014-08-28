@@ -1,15 +1,16 @@
-package com.rafdi.chat.model.user.impl;
+package com.rafdi.chat.server.model.user.impl;
 
-import com.rafdi.chat.model.user.InvalidNameException;
-import com.rafdi.chat.model.user.User;
-import com.rafdi.chat.model.user.UserFactory;
+import com.rafdi.chat.server.model.user.InvalidNameException;
+import com.rafdi.chat.server.model.user.User;
+import com.rafdi.chat.server.model.user.UserFactory;
 
 public class UserFactoryImpl implements UserFactory {
 
 	@Override
-	public User createUser(String name) throws InvalidNameException {
+	public User createUser(String name, byte[] password)
+			throws InvalidNameException {
 		validateName(name);
-		User user = new User(name);
+		User user = new User(name, password);
 		return user;
 	}
 
