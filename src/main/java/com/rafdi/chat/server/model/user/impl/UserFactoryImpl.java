@@ -1,6 +1,7 @@
 package com.rafdi.chat.server.model.user.impl;
 
 import com.rafdi.chat.server.model.user.InvalidNameException;
+import com.rafdi.chat.server.model.user.InvalidPassException;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserFactory;
 
@@ -10,6 +11,7 @@ public class UserFactoryImpl implements UserFactory {
 	public User createUser(String name, byte[] password)
 			throws InvalidNameException {
 		validateName(name);
+		validatePass(password);
 		User user = new User(name, password);
 		return user;
 	}
@@ -24,8 +26,20 @@ public class UserFactoryImpl implements UserFactory {
 			throw new InvalidNameException("name can't be an empty string");
 		} else if (!isAlphanumeric(name)) {
 			throw new InvalidNameException("name must be alphanumeric chars");
+		} else if (name.length() > 20) {
+			throw new InvalidNameException("name can't be longer than 20 chars");
 		}
 
+		return validity;
+	}
+
+	private boolean validatePass(byte[] pass) throws InvalidPassException {
+		boolean validity = true;
+		if (pass == null) {
+			throw new InvalidPassException("password can't be null");
+		} else if (new String(pass).length() < 6) {
+			throw new InvalidPassException("password must be 6 chars or longer");
+		}
 		return validity;
 	}
 

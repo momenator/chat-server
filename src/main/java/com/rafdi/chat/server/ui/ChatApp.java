@@ -3,13 +3,16 @@ package com.rafdi.chat.server.ui;
 import java.util.Scanner;
 
 import com.rafdi.chat.server.model.user.User;
+import com.rafdi.chat.server.model.user.impl.UserFactoryImpl;
+import com.rafdi.chat.server.model.user.impl.UserRepositoryImpl;
 import com.rafdi.chat.server.service.impl.UserServiceImpl;
 
 public class ChatApp {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		UserServiceImpl test = new UserServiceImpl();
+		UserServiceImpl test = new UserServiceImpl(new UserFactoryImpl(),
+				new UserRepositoryImpl());
 		System.out.println("---WELCOME TO CHATAPP---");
 		System.out.println("Please register");
 		System.out.print("Please enter your name: ");
@@ -29,7 +32,7 @@ public class ChatApp {
 		System.out.print("Please enter your password: ");
 		String inputPass = scanner.nextLine();
 		byte[] inputPassByte = inputPass.getBytes();
-		boolean result = test.verifyUser(inputName, inputPassByte);
+		boolean result = test.authenticateUser(inputName, inputPassByte);
 		if (result) {
 			System.out.println("Login Successful! Welcome " + inputName);
 		} else {

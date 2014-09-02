@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.rafdi.chat.server.model.user.InvalidNameException;
+import com.rafdi.chat.server.model.user.InvalidPassException;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserFactory;
 
@@ -27,7 +28,8 @@ public class UserFactoryTest {
 		String expectedName = "Bambi";
 		User user;
 		try {
-			user = userFactory.createUser(expectedName, null);
+			user = userFactory.createUser(expectedName,
+					"muhammad123".getBytes());
 			Assert.assertNotNull("User should not be null", user);
 			Assert.assertEquals("actual username does not match expected",
 					expectedName, user.getName());
@@ -42,7 +44,7 @@ public class UserFactoryTest {
 	public void testCreateUserWithNullNameThrowsException()
 			throws InvalidNameException {
 		String nullName = null;
-		userFactory.createUser(nullName, null);
+		userFactory.createUser(nullName, "muhammad123".getBytes());
 
 	}
 
@@ -50,7 +52,7 @@ public class UserFactoryTest {
 	public void testCreateUserWithSpacesThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "name with spaces";
-		userFactory.createUser(expectedName, null);
+		userFactory.createUser(expectedName, "muhammad123".getBytes());
 
 	}
 
@@ -58,19 +60,37 @@ public class UserFactoryTest {
 	public void testCreateUserWithEmptyStringThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "";
-		userFactory.createUser(expectedName, null);
+		userFactory.createUser(expectedName, "muhammad123".getBytes());
 	}
 
 	@Test(expected = InvalidNameException.class)
 	public void testCreateUserWithIllegalCharsThrowsInvalidNameException()
 			throws InvalidNameException {
 		String expectedName = "!@£$£$@";
-		userFactory.createUser(expectedName, null);
+		userFactory.createUser(expectedName, "muhammad123".getBytes());
 	}
 
-	@Test
-	public void testCreateUserWithNameLongerThanLimitThrowsInvalidNameException() {
+	@Test(expected = InvalidNameException.class)
+	public void testCreateUserWithNameLongerThanLimitThrowsInvalidNameException()
+			throws InvalidNameException {
+		String expectedName = "dsfasgrfwf4fw32r24t3rgf3g34rg35g43g34fr4gf";
+		userFactory.createUser(expectedName, "muhammad123".getBytes());
 
 	}
 
+	@Test(expected = InvalidPassException.class)
+	public void testCreateUserWithNullPassThrowsInvalidPassException()
+			throws InvalidPassException {
+		String password = null;
+		userFactory.createUser("testUser", null);
+	}
+
+	@Test(expected = InvalidPassException.class)
+	public void testCreateUserWithPassLessThan6charsThrowsInvalidPassException()
+			throws InvalidPassException {
+		String password = "123";
+		byte[] passEnc = password.getBytes();
+		System.out.println(new String(passEnc));
+		userFactory.createUser("testUser", password.getBytes());
+	}
 }

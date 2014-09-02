@@ -9,10 +9,6 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(byte[] password) {
-		this.password = password;
-	}
-
 	public User(String name, byte[] password) {
 		this.name = name;
 		this.password = password;
