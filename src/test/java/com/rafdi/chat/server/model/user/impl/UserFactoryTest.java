@@ -88,9 +88,23 @@ public class UserFactoryTest {
 	@Test(expected = InvalidPassException.class)
 	public void testCreateUserWithPassLessThan6charsThrowsInvalidPassException()
 			throws InvalidPassException {
-		String password = "123";
-		byte[] passEnc = password.getBytes();
-		System.out.println(new String(passEnc));
-		userFactory.createUser("testUser", password.getBytes());
+		String expectedPassword = "123";
+		byte[] passEnc = expectedPassword.getBytes();
+		userFactory.createUser("testUser", passEnc);
 	}
+
+	@Test(expected = InvalidPassException.class)
+	public void testCreateUserWithMoreThan20CharsThrowsInvalidPassException()
+			throws InvalidPassException {
+		String expectedPassword = "fsjgilregreibi34ib43itbkjgbg4jk35";
+		byte[] passEnc = expectedPassword.getBytes();
+		userFactory.createUser("testUser", passEnc);
+	}
+	/*
+	 * @Test(expected = InvalidPassException.class) public void
+	 * testCreateUserWithLessThan2NumericCharsThrowsInvalidPassException()
+	 * throws InvalidPassException { String expectedPassword = "foobar"; byte[]
+	 * passEnc = expectedPassword.getBytes(); userFactory.createUser("test",
+	 * passEnc); }
+	 */
 }

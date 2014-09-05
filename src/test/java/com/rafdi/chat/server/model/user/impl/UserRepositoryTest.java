@@ -28,4 +28,13 @@ public class UserRepositoryTest {
 		boolean saved = userRepository.saveUser(user);
 		Assert.assertTrue("User is not saved", saved);
 	}
+
+	@Test
+	public void testFindUserByName() {
+		String name = "Bob";
+		User expectedUser = new User(name, null);
+		userRepository.saveUser(expectedUser);
+		User actualUser = expectedUser;
+		Assert.assertEquals(expectedUser, actualUser);
+	}
 }
