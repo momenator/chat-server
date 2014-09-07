@@ -18,6 +18,14 @@ public class ChatRoom {
 		this.users = new HashSet<User>();
 	}
 
+	public void setChatRoomName(String chatRoomName)
+			throws InvalidChatRoomException {
+		if (chatRoomName == null) {
+			throw new InvalidChatRoomException("Chat room name can't be null!");
+		}
+		this.chatRoomName = chatRoomName;
+	}
+
 	public List<Message> getMessages() {
 		return messages;
 	}
@@ -43,5 +51,9 @@ public class ChatRoom {
 			throw new InvalidMessageException("Message can't be null!");
 		}
 		messages.add(message);
+	}
+
+	public void addUser(User user) {
+
 	}
 }

@@ -12,6 +12,9 @@ public class ChatRoomFactoryImpl implements ChatRoomFactory {
 		if (chatRoomName == null) {
 			throw new InvalidChatRoomException(
 					"chatroom's room name can't be null!");
+		} else if (chatRoomName.equals("")) {
+			throw new InvalidChatRoomException(
+					"chatroom's room name can't be an empty string!");
 		}
 		ChatRoom chatRoom = new ChatRoom(chatRoomName);
 		return chatRoom;

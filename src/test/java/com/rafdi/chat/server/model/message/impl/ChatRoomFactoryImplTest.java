@@ -30,4 +30,20 @@ public class ChatRoomFactoryImplTest {
 		Assert.assertNotNull(chatRoom);
 	}
 
+	@Test(expected = InvalidChatRoomException.class)
+	public void testCreateChatRoomWithNullNameThrowsInvalidChatRoomException()
+			throws InvalidChatRoomException {
+		ChatRoom expectedChatRoom = chatRoomFactory.createChatRoom(null);
+		Assert.assertTrue(expectedChatRoom.getChatRoomName().equals(null));
+	}
+
+	@Test(expected = InvalidChatRoomException.class)
+	public void testCreateChatRoomWithEmptyStringNameThrowsInvalidChatRoomException()
+			throws InvalidChatRoomException {
+		String expectedChatRoomName = "";
+		ChatRoom expectedChatRoom = chatRoomFactory
+				.createChatRoom(expectedChatRoomName);
+		Assert.assertTrue(expectedChatRoom.getChatRoomName().equals(
+				expectedChatRoomName));
+	}
 }

@@ -3,6 +3,7 @@ package com.rafdi.chat.server.service.impl;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
+import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
 import com.rafdi.chat.server.model.message.InvalidMessageException;
 import com.rafdi.chat.server.model.message.Message;
 import com.rafdi.chat.server.model.message.MessageFactory;
@@ -21,7 +22,8 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 
 	@Override
 	public Message sendMessage(String text, String roomName, User user)
-			throws InvalidMessageException, InvalidChatRoomException {
+			throws InvalidMessageException, InvalidChatRoomException,
+			InvalidChatRoomRepositoryException {
 		Message message = messageFactory.createMessage(text, user);
 		ChatRoom chatRoom = chatRoomRepository.findChatRoomByName(roomName);
 		chatRoom.addMessage(message);

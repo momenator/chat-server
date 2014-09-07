@@ -22,19 +22,45 @@ public class UserRepositoryTest {
 	}
 
 	@Test
-	public void testSaveUser() {
-		String name = "Bob";
+	public void testSuccessfullySaveUser() {
+		String name = "johnDoe";
 		User user = new User(name, null);
 		boolean saved = userRepository.saveUser(user);
-		Assert.assertTrue("User is not saved", saved);
+		Assert.assertNotNull("The user can't be null!", user);
+		Assert.assertEquals(saved, true);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void saveNullUserThrowsNullPointerException()
+			throws NullPointerException {
+		User user = null;
+		userRepository.saveUser(null);
+		Assert.assertTrue(user == null);
 	}
 
 	@Test
-	public void testFindUserByName() {
-		String name = "Bob";
+	public void testSuccessfullyFindUserByName() {
+		String name = "Bobby";
 		User expectedUser = new User(name, null);
 		userRepository.saveUser(expectedUser);
-		User actualUser = expectedUser;
-		Assert.assertEquals(expectedUser, actualUser);
+		User actualUser = userRepository.findUserByName(name);
+		Assert.assertTrue("the user did not match!",
+				expectedUser.equals(actualUser));
 	}
+
+	@Test(expected = NullPointerException.class)
+	public void testFailToFindUserByNameThrowsInvalidNullPointerException()
+			throws NullPointerException {
+		User user = userRepository.findUserByName("GHOST");
+		Assert.assertNull(user);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testFindNullUserNameThrowsNullPointerException()
+			throws NullPointerException {
+		String expectedName = null;
+		userRepository.findUserByName(expectedName);
+		Assert.assertTrue(expectedName.equals(null));
+	}
+
 }

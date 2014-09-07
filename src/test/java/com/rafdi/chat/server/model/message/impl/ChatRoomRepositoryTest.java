@@ -1,6 +1,7 @@
 package com.rafdi.chat.server.model.message.impl;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -30,7 +31,7 @@ public class ChatRoomRepositoryTest {
 	}
 
 	@Test
-	public void saveChatRoomSuccessful()
+	public void testSaveChatRoomSuccessful()
 			throws InvalidChatRoomRepositoryException, InvalidChatRoomException {
 		String chatRoomName = "chatroom1";
 		ChatRoom expectedChatRoom = new ChatRoom(chatRoomName);
@@ -39,6 +40,48 @@ public class ChatRoomRepositoryTest {
 
 		chatRoomRepository.saveChatRoom(expectedChatRoom);
 		Mockito.verify(dao, Mockito.times(1)).saveChatRoom(expectedChatRoom);
-
 	}
+
+	@Test(expected = InvalidChatRoomException.class)
+	public void testSaveChatRoomWithNullChatroomThrowsInvalidChatRoomExceptionClass()
+			throws InvalidChatRoomException {
+		ChatRoom expectedChatRoom = null;
+		chatRoomRepository.saveChatRoom(expectedChatRoom);
+		Mockito.verify(dao, Mockito.times(1)).saveChatRoom(expectedChatRoom);
+	}
+
+	@Test(expected = InvalidChatRoomException.class)
+	public void testSaveChatRoomWithNullNameThrowsInvalidChatRoomExceptionClass()
+			throws InvalidChatRoomException {
+		String expectedChatRoomName = null;
+		ChatRoom expectedChatRoom = new ChatRoom(expectedChatRoomName);
+		Mockito.when(chatRoomFactory.createChatRoom(expectedChatRoomName))
+				.thenReturn(expectedChatRoom);
+		chatRoomRepository.saveChatRoom(expectedChatRoom);
+		Mockito.verify(dao, Mockito.times(1)).saveChatRoom(expectedChatRoom);
+		Assert.assertTrue(expectedChatRoom.getChatRoomName().equals(
+				expectedChatRoomName));
+	}
+
+	@Test
+	public void testFindChatRoomByNameSuccessfully()
+			throws InvalidChatRoomException, InvalidChatRoomRepositoryException {
+		String expectedChatRoomName = "testChatRoom";
+		ChatRoom expectedChatRoom = new ChatRoom(expectedChatRoomName);
+		Mockito.when(chatRoomFactory.createChatRoom(expectedChatRoomName))
+				.thenReturn(expectedChatRoom);
+		chatRoomRepository.saveChatRoom(expectedChatRoom);
+		Assert.assertTrue(expectedChatRoom.getChatRoomName().equals(
+				expectedChatRoomName));
+		Assert.assertTrue(chatRoomRepository.findChatRoomByName(
+				expectedChatRoomName).equals(expectedChatRoom));
+	}
+
+	@Test(expected = InvalidChatRoomRepositoryException.class)
+	public void testFindNullChatRoomNameThrowsInvalidChatRoomRepositoryException()
+			throws InvalidChatRoomRepositoryException, InvalidChatRoomException {
+		String expectedChatRoomName = null;
+		chatRoomRepository.findChatRoomByName(expectedChatRoomName);
+	}
+
 }

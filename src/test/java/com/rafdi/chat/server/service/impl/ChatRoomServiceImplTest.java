@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
+import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
 import com.rafdi.chat.server.model.message.InvalidMessageException;
 import com.rafdi.chat.server.model.message.Message;
 import com.rafdi.chat.server.model.message.MessageFactory;
@@ -36,7 +37,7 @@ public class ChatRoomServiceImplTest {
 
 	@Test
 	public void sendMessageSuccessful() throws InvalidMessageException,
-			InvalidChatRoomException {
+			InvalidChatRoomException, InvalidChatRoomRepositoryException {
 		User user = new User("johnDoe", "password".getBytes());
 		String roomName = "chatroom1";
 		String message = "hello world";

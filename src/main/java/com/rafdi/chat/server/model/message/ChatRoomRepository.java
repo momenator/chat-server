@@ -4,5 +4,5 @@ public interface ChatRoomRepository {
 	public void saveChatRoom(ChatRoom chatRoom) throws InvalidChatRoomException;
 
 	public ChatRoom findChatRoomByName(String chatRoomName)
-			throws InvalidChatRoomException;
+			throws InvalidChatRoomException, InvalidChatRoomRepositoryException;
 }

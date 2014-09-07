@@ -12,7 +12,14 @@ public class Message {
 	private Date timestamp;
 	private User user;
 
-	public Message(String message, User user) {
+	public Message(String message, User user) throws InvalidMessageException {
+		if (message.length() > 250) {
+			throw new InvalidMessageException(
+					"message can't be longer than 250 chars!");
+		}
+		if (user == null) {
+			throw new InvalidMessageException("User can't be null!");
+		}
 		this.message = message;
 		this.user = user;
 		this.timestamp = Calendar.getInstance().getTime();
@@ -36,46 +43,6 @@ public class Message {
 
 	public User getUser() {
 		return user;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((emoticons == null) ? 0 : emoticons.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result
-				+ ((timestamp == null) ? 0 : timestamp.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Message other = (Message) obj;
-		if (emoticons == null) {
-			if (other.emoticons != null)
-				return false;
-		} else if (!emoticons.equals(other.emoticons))
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
 	}
 
 }

@@ -39,25 +39,30 @@ public class UserFactoryImpl implements UserFactory {
 			throw new InvalidPassException("password can't be null");
 		} else if (new String(pass).length() < 6) {
 			throw new InvalidPassException("password must be 6 chars or longer");
-		} else if (new String(pass).length() > 20) {
+		} else if (!hasAtLeast2Numbers(new String(pass))) {
+
 			throw new InvalidPassException(
-					"Password must be less than 20 chars");
+					"password must contain at least one number!");
 		}
-		/*
-		 * else if (new String(pass).matches("[0-9]")) { System.out.println(new
-		 * String(pass).matches("[0-9]")); throw new InvalidPassException(
-		 * "password must contain at least one number!"); }
-		 */
+
 		return validity;
 	}
 
-	/*
-	 * private boolean hasAtLeast2Numbers(String password) { int numCount = 0;
-	 * char[] letters = password.toCharArray(); for (int i = 0; i <
-	 * password.length(); i++) { if (letters[i].matches("\\d+")) {
-	 * 
-	 * } } return false; }
-	 */
+	private boolean hasAtLeast2Numbers(String password) {
+		int numCount = 0;
+		String numbers = "01233456789";
+		char[] letters = password.toCharArray();
+		for (char c : letters) {
+			if (numbers.indexOf(c) > -1) {
+				numCount++;
+			}
+		}
+		if (numCount >= 2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	private boolean isAlphanumeric(String name) {
 		char[] letters = name.toCharArray();
