@@ -7,4 +7,6 @@ public interface UserService {
 
 	public boolean authenticateUser(String name, byte[] password);
 
+	public User getUser(String inputName);
+
 }

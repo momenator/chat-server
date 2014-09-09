@@ -5,15 +5,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.rafdi.chat.server.infra.UserDAO;
+import com.rafdi.chat.server.infra.impl.MockUserDAO;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserRepository;
 
 public class UserRepositoryTest {
 	private UserRepository userRepository;
+	private UserDAO userDao = new MockUserDAO();
 
 	@Before
 	public void setUp() throws Exception {
-		userRepository = new UserRepositoryImpl();
+		userRepository = new UserRepositoryImpl(userDao);
 	}
 
 	@After
