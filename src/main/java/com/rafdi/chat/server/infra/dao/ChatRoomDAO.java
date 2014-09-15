@@ -1,4 +1,4 @@
-package com.rafdi.chat.server.infra;
+package com.rafdi.chat.server.infra.dao;
 
 import com.rafdi.chat.server.model.message.ChatRoom;
 

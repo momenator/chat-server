@@ -1,10 +1,14 @@
 package com.rafdi.chat.server.model.user.impl;
 
-import com.rafdi.chat.server.infra.UserDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.rafdi.chat.server.infra.dao.UserDAO;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserRepository;
 
 public class UserRepositoryImpl implements UserRepository {
+	final Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
 	private UserDAO dao;
 
 	public UserRepositoryImpl(UserDAO dao) {

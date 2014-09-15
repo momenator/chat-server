@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rafdi.chat.server.infra.ChatRoomDAO;
+import com.rafdi.chat.server.infra.dao.ChatRoomDAO;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomFactory;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;

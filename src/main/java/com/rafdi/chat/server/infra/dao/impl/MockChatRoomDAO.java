@@ -1,6 +1,6 @@
-package com.rafdi.chat.server.infra.impl;
+package com.rafdi.chat.server.infra.dao.impl;
 
-import com.rafdi.chat.server.infra.ChatRoomDAO;
+import com.rafdi.chat.server.infra.dao.ChatRoomDAO;
 import com.rafdi.chat.server.model.message.ChatRoom;
 
 public class MockChatRoomDAO implements ChatRoomDAO {

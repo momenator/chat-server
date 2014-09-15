@@ -1,9 +1,9 @@
-package com.rafdi.chat.server.infra.impl;
+package com.rafdi.chat.server.infra.dao.impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.rafdi.chat.server.infra.UserDAO;
+import com.rafdi.chat.server.infra.dao.UserDAO;
 import com.rafdi.chat.server.model.user.User;
 
 public class MockUserDAO implements UserDAO {

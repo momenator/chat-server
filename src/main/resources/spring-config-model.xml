@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+	<bean id="UserFactoryImpl" class="com.rafdi.chat.server.model.user.impl.UserFactoryImpl"/>
+		
+	<bean id="UserRepositoryImpl" class="com.rafdi.chat.server.model.user.impl.UserRepositoryImpl">
+		<constructor-arg index="0" ref="MockUserDAO"/>
+	</bean>
+	
+	<bean id="ChatRoomFactoryImpl" class="com.rafdi.chat.server.model.message.impl.ChatRoomFactoryImpl"/>
+		
+	
+	<bean id="ChatRoomRepositoryImpl" class="com.rafdi.chat.server.model.message.impl.ChatRoomRepositoryImpl">
+		<constructor-arg index="0" ref="ChatRoomFactoryImpl"/>
+		<constructor-arg index="1" ref="MockChatRoomDAO"/>
+	</bean>
+	
+	<bean id="MessageFactoryImpl" class="com.rafdi.chat.server.model.message.impl.MessageFactoryImpl"/>
+		
+
+ 
+</beans>

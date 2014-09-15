@@ -5,8 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rafdi.chat.server.infra.UserDAO;
-import com.rafdi.chat.server.infra.impl.MockUserDAO;
+import com.rafdi.chat.server.infra.dao.UserDAO;
+import com.rafdi.chat.server.infra.dao.impl.MockUserDAO;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserRepository;
 

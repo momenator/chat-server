@@ -1,6 +1,6 @@
 package com.rafdi.chat.server.model.message.impl;
 
-import com.rafdi.chat.server.infra.ChatRoomDAO;
+import com.rafdi.chat.server.infra.dao.ChatRoomDAO;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomFactory;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;

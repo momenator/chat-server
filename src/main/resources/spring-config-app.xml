@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+ 
+ 
+    <import resource="spring-config-infra.xml"/>
+    <import resource="spring-config-model.xml"/> 
+    <import resource="spring-config-service.xml"/>  
+    
+	<bean id="ChatApp" class="com.rafdi.chat.server.ui.ChatApp" init-method="run">
+		<property name="chatRoomService" ref="ChatRoomServiceImpl"/>
+		<property name="userService" ref="UserServiceImpl"/>
+		<property name="inputStream" ref="systemInputStream"/>
+	</bean>
+	
+	
+	<util:constant id="systemInputStream"
+    static-field="java.lang.System.in"/>
+		
+
+</beans>
