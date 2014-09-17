@@ -1,7 +1,7 @@
 package com.rafdi.chat.server.model.user;
 
 public class User {
-
+	private long userID;
 	private String name;
 	private byte[] password;
 
@@ -23,4 +23,13 @@ public class User {
 		return name;
 
 	}
+
+	public long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
 }

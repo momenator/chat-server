@@ -1,6 +1,7 @@
 package com.rafdi.chat.server.ui;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,7 @@ import com.rafdi.chat.server.service.UserService;
 public class ChatApp {
 	private static User user;
 
-	private ChatRoomService chatRoomService;
+	public ChatRoomService chatRoomService;
 
 	private UserService userService;
 
@@ -29,16 +30,19 @@ public class ChatApp {
 				"spring-config-app.xml");
 	}
 
-	public void setChatRoomService(ChatRoomService chatRoomService) {
+	public ChatRoomService setChatRoomService(ChatRoomService chatRoomService) {
 		this.chatRoomService = chatRoomService;
+		return this.chatRoomService;
 	}
 
-	public void setUserService(UserService userService) {
+	public UserService setUserService(UserService userService) {
 		this.userService = userService;
+		return this.userService;
 	}
 
-	public void setInputStream(InputStream inputStream) {
+	public InputStream setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
+		return this.inputStream;
 	}
 
 	public void run() {
@@ -79,6 +83,11 @@ public class ChatApp {
 				Message message = chatRoomService.sendMessage(messageContent,
 						roomName, user);
 				System.out.println(message.getMessage() + "  ..sent..");
+				List<Message> messages = chatRoomService.getMessages(roomName);
+				for (Message m : messages) {
+					System.out.println(m.getTimestamp() + ":" + m.getUser()
+							+ ":" + m.getMessage());
+				}
 			} catch (InvalidMessageException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

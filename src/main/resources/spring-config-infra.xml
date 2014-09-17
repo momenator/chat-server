@@ -6,7 +6,16 @@
 	<bean id="MockChatRoomDAO" class="com.rafdi.chat.server.infra.dao.impl.MockChatRoomDAO"/>
 		
 
+	<bean id="userDao" class="com.rafdi.chat.server.infra.dao.impl.JDBCUserDAO">
+		<constructor-arg index="0" value="root"/>
+		<constructor-arg index="1" value="Clippet321"/>
+	</bean>
 	
 	<bean id="MockUserDAO" class="com.rafdi.chat.server.infra.dao.impl.MockUserDAO"/>
+	
+	<bean id="chatRoomDAO" class="com.rafdi.chat.server.infra.dao.impl.JDBCChatRoomDAO">
+		<constructor-arg index="0" value="root"/>
+		<constructor-arg index="1" value="Clippet321"/>
+	</bean>
 		
 </beans>

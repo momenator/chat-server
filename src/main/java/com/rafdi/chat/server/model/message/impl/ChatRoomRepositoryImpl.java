@@ -6,6 +6,7 @@ import com.rafdi.chat.server.model.message.ChatRoomFactory;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
+import com.rafdi.chat.server.model.message.Message;
 
 public class ChatRoomRepositoryImpl implements ChatRoomRepository {
 
@@ -39,8 +40,14 @@ public class ChatRoomRepositoryImpl implements ChatRoomRepository {
 		if (chatRoom == null) {
 			chatRoom = chatRoomFactory.createChatRoom(chatRoomName);
 			dao.saveChatRoom(chatRoom);
+			chatRoom = dao.getChatRoom(chatRoomName);
 		}
 		return chatRoom;
+	}
+
+	@Override
+	public void saveMessage(ChatRoom chatRoom, Message message) {
+		dao.saveMessage(chatRoom, message);
 	}
 
 }

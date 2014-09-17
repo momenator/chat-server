@@ -12,6 +12,11 @@ public class Message {
 	private Date timestamp;
 	private User user;
 
+	@Override
+	public String toString() {
+		return "Message [message=" + message + ", timestamp=" + timestamp + "]";
+	}
+
 	public Message(String message, User user) throws InvalidMessageException {
 		if (message.length() > 250) {
 			throw new InvalidMessageException(

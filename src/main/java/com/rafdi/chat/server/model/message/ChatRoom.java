@@ -8,6 +8,7 @@ import java.util.Set;
 import com.rafdi.chat.server.model.user.User;
 
 public class ChatRoom {
+	private long chatRoomID;
 	private List<Message> messages;
 	private String chatRoomName;
 	private Set<User> users;
@@ -55,5 +56,13 @@ public class ChatRoom {
 
 	public void addUser(User user) {
 
+	}
+
+	public long getChatRoomID() {
+		return chatRoomID;
+	}
+
+	public void setChatRoomID(long chatRoomID) {
+		this.chatRoomID = chatRoomID;
 	}
 }

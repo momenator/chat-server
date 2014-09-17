@@ -1,5 +1,7 @@
 package com.rafdi.chat.server.service;
 
+import java.util.List;
+
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
 import com.rafdi.chat.server.model.message.InvalidMessageException;
@@ -10,4 +12,6 @@ public interface ChatRoomService {
 	public Message sendMessage(String message, String roomName, User user)
 			throws InvalidMessageException, InvalidChatRoomException,
 			InvalidChatRoomRepositoryException;
+
+	public List<Message> getMessages(String roomName);
 }
