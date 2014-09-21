@@ -1,15 +1,20 @@
 package com.rafdi.chat.server.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserFactory;
 import com.rafdi.chat.server.model.user.UserRepository;
 import com.rafdi.chat.server.service.UserService;
 
+@Component
 public class UserServiceImpl implements UserService {
 
 	private UserFactory userFactory;
 	private UserRepository userRepository;
 
+	@Autowired
 	public UserServiceImpl(UserFactory userFactory,
 			UserRepository userRepository) {
 		this.userFactory = userFactory;

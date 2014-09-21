@@ -1,9 +1,12 @@
 package com.rafdi.chat.server.model.message.impl;
 
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomFactory;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 
+@Component
 public class ChatRoomFactoryImpl implements ChatRoomFactory {
 
 	@Override

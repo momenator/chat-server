@@ -1,22 +1,23 @@
 package com.rafdi.chat.server.infra.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.infra.dao.UserDAO;
 import com.rafdi.chat.server.model.user.User;
 
+@Component
 public class JDBCUserDAO implements UserDAO {
 	private Connection conn;
 
-	public JDBCUserDAO(String name, String password)
-			throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/chat_server_db", name, password);
+	@Autowired
+	public JDBCUserDAO(Connection conn) {
+		this.conn = conn;
 
 	}
 

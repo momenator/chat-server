@@ -1,10 +1,13 @@
 package com.rafdi.chat.server.model.user.impl;
 
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.model.user.InvalidNameException;
 import com.rafdi.chat.server.model.user.InvalidPassException;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserFactory;
 
+@Component
 public class UserFactoryImpl implements UserFactory {
 
 	@Override

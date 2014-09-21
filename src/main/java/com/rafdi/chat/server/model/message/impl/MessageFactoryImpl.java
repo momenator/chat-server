@@ -2,12 +2,15 @@ package com.rafdi.chat.server.model.message.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.model.message.Emoticon;
 import com.rafdi.chat.server.model.message.InvalidMessageException;
 import com.rafdi.chat.server.model.message.Message;
 import com.rafdi.chat.server.model.message.MessageFactory;
 import com.rafdi.chat.server.model.user.User;
 
+@Component
 public class MessageFactoryImpl implements MessageFactory {
 
 	@Override

@@ -4,8 +4,12 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
@@ -15,6 +19,7 @@ import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.service.ChatRoomService;
 import com.rafdi.chat.server.service.UserService;
 
+@Component
 public class ChatApp {
 	private static User user;
 
@@ -30,22 +35,38 @@ public class ChatApp {
 				"spring-config-app.xml");
 	}
 
+	@Autowired
 	public ChatRoomService setChatRoomService(ChatRoomService chatRoomService) {
 		this.chatRoomService = chatRoomService;
 		return this.chatRoomService;
 	}
 
+	@Autowired
 	public UserService setUserService(UserService userService) {
 		this.userService = userService;
 		return this.userService;
 	}
 
+	@Autowired
 	public InputStream setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
 		return this.inputStream;
 	}
 
-	public void run() {
+	@PostConstruct
+	public void init() {
+		Thread t = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				start();
+
+			}
+		});
+		t.start();
+	}
+
+	public void start() {
 		Scanner scanner = new Scanner(inputStream);
 		while (true) {
 			System.out.println("choose: register, login or chat");

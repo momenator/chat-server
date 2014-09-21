@@ -1,5 +1,8 @@
 package com.rafdi.chat.server.model.message.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.infra.dao.ChatRoomDAO;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomFactory;
@@ -8,11 +11,13 @@ import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
 import com.rafdi.chat.server.model.message.Message;
 
+@Component
 public class ChatRoomRepositoryImpl implements ChatRoomRepository {
 
 	private ChatRoomDAO dao;
 	private ChatRoomFactory chatRoomFactory;
 
+	@Autowired
 	public ChatRoomRepositoryImpl(ChatRoomFactory chatRoomFactory,
 			ChatRoomDAO dao) {
 		this.dao = dao;

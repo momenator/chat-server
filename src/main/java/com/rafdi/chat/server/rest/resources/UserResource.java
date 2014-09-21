@@ -1,11 +1,11 @@
-package com.rafdi.chat.server.model.user;
+package com.rafdi.chat.server.rest.resources;
 
-public class User {
+public class UserResource {
 	private long userID;
 	private String name;
-	private byte[] password;
+	private String password;
 
-	public User() {
+	public UserResource() {
 
 	}
 
@@ -13,15 +13,15 @@ public class User {
 		this.name = name;
 	}
 
-	public void setPassword(byte[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public byte[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public User(String name, byte[] password) {
+	public UserResource(String name, String password) {
 		this.name = name;
 		this.password = password;
 	}

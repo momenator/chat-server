@@ -8,9 +8,14 @@
   <name>chat-server</name>
   <url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>4.1.0.RELEASE</spring.version>
-	</properties>
-  
+  		<start-class>com.rafdi.chat.server.Application</start-class>
+  	</properties>
+   
+	<parent>
+	  	<groupId>org.springframework.boot</groupId>
+	  	<artifactId>spring-boot-starter-parent</artifactId>
+	  	<version>1.1.6.RELEASE</version>
+    </parent>
   <dependencies>
 
     <dependency>
@@ -29,27 +34,9 @@
     
     <!-- Spring 4 dependencies -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
- 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.7</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.7</version>
-		</dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-web</artifactId>
+  		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -58,4 +45,32 @@
 		
     
   </dependencies>
+  
+	  <build>
+		  <plugins>
+			  <plugin>
+				  <artifactId>maven-compiler-plugin</artifactId>
+				  <version>2.3.2</version>
+			  </plugin>
+		      
+		      <plugin>
+				  <groupId>org.springframework.boot</groupId>
+				  <artifactId>spring-boot-maven-plugin</artifactId>
+			  </plugin>
+		  </plugins>
+	  </build>
+
+	  <repositories>
+		  <repository>
+			  <id>spring-releases</id>
+			  <url>http://repo.spring.io/libs-release</url>
+		  </repository>
+	  </repositories>
+		  
+	  <pluginRepositories>
+		  <pluginRepository>
+		  <id>spring-releases</id>
+		  <url>http://repo.spring.io/libs-release</url>
+		  </pluginRepository>
+	  </pluginRepositories>
 </project>

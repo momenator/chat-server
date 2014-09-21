@@ -3,6 +3,9 @@ package com.rafdi.chat.server.service.impl;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
@@ -13,10 +16,12 @@ import com.rafdi.chat.server.model.message.MessageFactory;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.service.ChatRoomService;
 
+@Component
 public class ChatRoomServiceImpl implements ChatRoomService {
 	private ChatRoomRepository chatRoomRepository;
 	private MessageFactory messageFactory;
 
+	@Autowired
 	public ChatRoomServiceImpl(ChatRoomRepository chatRoomRepository,
 			MessageFactory messageFactory) {
 		this.chatRoomRepository = chatRoomRepository;

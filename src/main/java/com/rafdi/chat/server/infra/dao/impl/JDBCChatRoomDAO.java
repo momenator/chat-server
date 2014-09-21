@@ -1,7 +1,6 @@
 package com.rafdi.chat.server.infra.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,20 +8,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rafdi.chat.server.infra.dao.ChatRoomDAO;
 import com.rafdi.chat.server.model.message.ChatRoom;
 import com.rafdi.chat.server.model.message.InvalidMessageException;
 import com.rafdi.chat.server.model.message.Message;
 import com.rafdi.chat.server.model.user.User;
 
+@Component
 public class JDBCChatRoomDAO implements ChatRoomDAO {
 	private Connection conn;
 
-	public JDBCChatRoomDAO(String name, String password)
-			throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/chat_server_db", name, password);
+	@Autowired
+	public JDBCChatRoomDAO(Connection conn) {
+		this.conn = conn;
 
 	}
 

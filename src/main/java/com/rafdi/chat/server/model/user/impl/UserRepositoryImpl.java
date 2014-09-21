@@ -2,15 +2,19 @@ package com.rafdi.chat.server.model.user.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.rafdi.chat.server.infra.dao.UserDAO;
 import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.model.user.UserRepository;
 
+@Component
 public class UserRepositoryImpl implements UserRepository {
 	final Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
 	private UserDAO dao;
 
+	@Autowired
 	public UserRepositoryImpl(UserDAO dao) {
 		this.dao = dao;
 	}
