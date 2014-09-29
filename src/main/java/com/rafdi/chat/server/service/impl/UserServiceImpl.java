@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 	public User createUser(String name, byte[] password) {
 		User user = userFactory.createUser(name, password);
 		userRepository.saveUser(user);
-		return user;
+		return userRepository.findUserByName(name);
 	}
 
 	@Override

@@ -43,10 +43,17 @@ public class ChatRoomRepositoryImpl implements ChatRoomRepository {
 		}
 		ChatRoom chatRoom = dao.getChatRoom(chatRoomName);
 		if (chatRoom == null) {
-			chatRoom = chatRoomFactory.createChatRoom(chatRoomName);
-			dao.saveChatRoom(chatRoom);
-			chatRoom = dao.getChatRoom(chatRoomName);
+			chatRoom = createChatRoom(chatRoomName);
 		}
+		return chatRoom;
+	}
+
+	public ChatRoom createChatRoom(String chatRoomName)
+			throws InvalidChatRoomException {
+		ChatRoom chatRoom;
+		chatRoom = chatRoomFactory.createChatRoom(chatRoomName);
+		dao.saveChatRoom(chatRoom);
+		chatRoom = dao.getChatRoom(chatRoomName);
 		return chatRoom;
 	}
 

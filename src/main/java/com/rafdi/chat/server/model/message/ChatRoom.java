@@ -13,6 +13,9 @@ public class ChatRoom {
 	private String chatRoomName;
 	private Set<User> users;
 
+	public ChatRoom() {
+	}
+
 	public ChatRoom(String chatRoomName) {
 		this.chatRoomName = chatRoomName;
 		this.messages = new ArrayList<Message>();

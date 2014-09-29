@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+	<html>
+		<head>
+			<!-- bootstrap might be a good idea-->
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+			<script>
+				function sendMessage(){
+					var mytext = $("#mytext").val();
+					var message = "{\"message\":\"" + mytext + "\",\"user\":{\"userID\":\"2\"}}";
+
+
+					$.ajax({
+						type: "POST",
+						dataType: "json",
+						headers: {"content-type":"application/json"},
+						url: "http://localhost:8080/chatroom/bluePeter/messages",
+						data: message,
+						success:function(myData){
+						}
+					});
+
+					$.getJSON("http://localhost:8080/chatroom/bluePeter/messages",function(result){
+					    $.each(result, function(i, item){
+					      $(".msgs").append( item.user.name +" : "+ item.message + "<br>");
+					    });
+					  });
+				}
+			</script>
+		</head>
+		<body>
+			<h1 style="text-align:center;font-family:comic-sans">CHAT-APP</h1>
+			<div class="msgs" style="width:380px;height:400px;overflow-y:auto;margin:0 auto;border:solid black 2px">
+				<!-- display message inside this div -->
+			</div>
+			<div style="width:380px;margin:0 auto; margin-top:10px">
+				<textarea id="mytext" rows="4" cols="50">Enter Text here...</textarea>
+				<button onclick="sendMessage()">SEND!</button>
+			</div>
+		</body>
+	<html>

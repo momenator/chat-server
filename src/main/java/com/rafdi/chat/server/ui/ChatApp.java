@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
@@ -19,7 +18,6 @@ import com.rafdi.chat.server.model.user.User;
 import com.rafdi.chat.server.service.ChatRoomService;
 import com.rafdi.chat.server.service.UserService;
 
-@Component
 public class ChatApp {
 	private static User user;
 

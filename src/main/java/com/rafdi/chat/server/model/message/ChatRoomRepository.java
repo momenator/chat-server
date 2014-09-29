@@ -7,4 +7,7 @@ public interface ChatRoomRepository {
 			throws InvalidChatRoomException, InvalidChatRoomRepositoryException;
 
 	public void saveMessage(ChatRoom chatRoom, Message message);
+
+	public ChatRoom createChatRoom(String chatRoomName)
+			throws InvalidChatRoomException;
 }

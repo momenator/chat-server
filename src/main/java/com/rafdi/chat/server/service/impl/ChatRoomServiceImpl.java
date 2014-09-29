@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.rafdi.chat.server.model.message.ChatRoom;
+import com.rafdi.chat.server.model.message.ChatRoomFactory;
 import com.rafdi.chat.server.model.message.ChatRoomRepository;
 import com.rafdi.chat.server.model.message.InvalidChatRoomException;
 import com.rafdi.chat.server.model.message.InvalidChatRoomRepositoryException;
@@ -20,11 +21,13 @@ import com.rafdi.chat.server.service.ChatRoomService;
 public class ChatRoomServiceImpl implements ChatRoomService {
 	private ChatRoomRepository chatRoomRepository;
 	private MessageFactory messageFactory;
+	private ChatRoomFactory chatRoomFactory;
 
 	@Autowired
 	public ChatRoomServiceImpl(ChatRoomRepository chatRoomRepository,
-			MessageFactory messageFactory) {
+			ChatRoomFactory chatRoomFactory, MessageFactory messageFactory) {
 		this.chatRoomRepository = chatRoomRepository;
+		this.chatRoomFactory = chatRoomFactory;
 		this.messageFactory = messageFactory;
 	}
 
@@ -52,6 +55,27 @@ public class ChatRoomServiceImpl implements ChatRoomService {
 		ChatRoom chatRoom = chatRoomRepository.findChatRoomByName(roomName);
 		chatRoomRepository.saveMessage(chatRoom, message);
 		return message;
+	}
+
+	@Override
+	public ChatRoom createChatRoom(String chatRoomName)
+			throws InvalidChatRoomException {
+		ChatRoom chatRoom = chatRoomFactory.createChatRoom(chatRoomName);
+		chatRoomRepository.saveChatRoom(chatRoom);
+		try {
+			chatRoom = chatRoomRepository.findChatRoomByName(chatRoom
+					.getChatRoomName());
+		} catch (InvalidChatRoomRepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return chatRoom;
+	}
+
+	public ChatRoom getChatRoom(String chatRoomName)
+			throws InvalidChatRoomException, InvalidChatRoomRepositoryException {
+		ChatRoom chatRoom = chatRoomRepository.findChatRoomByName(chatRoomName);
+		return chatRoom;
 	}
 
 }

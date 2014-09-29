@@ -17,6 +17,9 @@ public class Message {
 		return "Message [message=" + message + ", timestamp=" + timestamp + "]";
 	}
 
+	public Message() {
+	}
+
 	public Message(String message, User user) throws InvalidMessageException {
 		if (message.length() > 250) {
 			throw new InvalidMessageException(
@@ -48,6 +51,14 @@ public class Message {
 
 	public User getUser() {
 		return user;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -46,11 +46,13 @@ public class JDBCChatRoomDAO implements ChatRoomDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			List<Message> messagesInChatRoom = getMessages(chatRoom);
-			chatRoom.setMessages(messagesInChatRoom);
-		} catch (InvalidMessageException e) {
-			e.printStackTrace();
+		if (chatRoom != null) {
+			try {
+				List<Message> messagesInChatRoom = getMessages(chatRoom);
+				chatRoom.setMessages(messagesInChatRoom);
+			} catch (InvalidMessageException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return chatRoom;
@@ -96,8 +98,11 @@ public class JDBCChatRoomDAO implements ChatRoomDAO {
 
 	private List<Message> getMessages(ChatRoom chatRoom)
 			throws InvalidMessageException {
-		String sql = "SELECT text, timestamp, chat_user.name FROM message inner join chat_user on message.user_id = chat_user.id WHERE chat_room_id=?";
+		String sql = "SELECT text, timestamp, chat_user.id as userID, chat_user.name FROM message inner join chat_user on message.user_id = chat_user.id WHERE chat_room_id=?";
 		List<Message> messages = new ArrayList<Message>();
+		if (chatRoom == null) {
+			return messages;
+		}
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, chatRoom.getChatRoomID());
@@ -105,8 +110,14 @@ public class JDBCChatRoomDAO implements ChatRoomDAO {
 			while (rs.next()) {
 				String text = rs.getString("text");
 				Date date = rs.getDate("timestamp");
+				long userID = rs.getLong("userID");
 				String userName = rs.getString("name");
-				Message message = new Message(text, new User(userName, null));
+
+				User user = new User();
+				user.setName(userName);
+				user.setUserID(userID);
+				Message message = new Message(text, user);
+
 				messages.add(message);
 			}
 			rs.close();
